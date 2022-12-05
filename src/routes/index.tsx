@@ -1,3 +1,5 @@
+import * as gfm from "https://deno.land/x/gfm@0.1.23/mod.ts";
+
 const SERVER_URL = "https://vwkd-kita-dict-server.deno.dev/";
 
 export const handler = {
@@ -21,16 +23,16 @@ export const handler = {
 
 export default function Page({ data }) {
   const entries = data.entries;
-
+  
   return (
-    <body class="px-5 py-3 flex flex-col gap-3 items-center">
-      <h1 class="text-xl font-semibold">Kita Dict Client</h1>
-      <ul class="flex flex-col gap-2 max-w-screen-md">
+    <body class="px-5 py-3 flex flex-col gap-5 items-center">
+      <h1 class="text-3xl font-semibold">Kita Dict</h1>
+      <ul class="flex flex-col gap-3 max-w-screen-sm">
       { entries.map((line) => {
-          return (
-            <li class="flex gap-3">
-              <p>{line}</p>
-            </li>
+        // only to make `**` bold and `*` cursive
+        const html = gfm.render(line);
+        return (
+            <li dangerouslySetInnerHTML={{ __html: html }} class="flex gap-3"></li>
           );
         })
       }
