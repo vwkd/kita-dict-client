@@ -15,6 +15,10 @@ export const handler = {
 
       const res = await fetch(urlServer);
       const entries = await res.json();
+
+      if (!entries.length) {
+        entries.push("No results found.");
+      }
   
       return ctx.render({ entries });
     }
