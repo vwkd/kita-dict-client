@@ -1,14 +1,40 @@
-import { Head } from "$fresh/runtime.ts";
+const SERVER_URL = "https://vwkd-kita-dict-server.deno.dev/";
 
-export default function Home() {
+export const handler = {
+  async GET(req, ctx) {
+    const url = new URL(req.url);
+    const q = url.searchParams.get("q");
+    
+    if (q === null) {
+      return new Response("No query provided");
+    } else {
+      const urlServer = new URL(SERVER_URL);
+      urlServer.searchParams.set("q", q);
+
+      const res = await fetch(urlServer);
+      const entries = await res.json();
+  
+      return ctx.render({ entries });
+    }
+  },
+};
+
+export default function Page({ data }) {
+  const entries = data.entries;
+
   return (
-    <>
-      <Head>
-        <title>Kita Dict</title>
-      </Head>
-      <div class="p-4 mx-auto max-w-screen-md">
-        <p class="my-6">Welcome to Kita Dict Client.</p>
-      </div>
-    </>
+    <body class="px-5 py-3 flex flex-col gap-3 items-center">
+      <h1 class="text-xl font-semibold">Kita Dict Client</h1>
+      <ul class="flex flex-col gap-2 max-w-screen-md">
+      { entries.map((line) => {
+          return (
+            <li class="flex gap-3">
+              <p>{line}</p>
+            </li>
+          );
+        })
+      }
+      </ul>
+    </body>
   );
 }
