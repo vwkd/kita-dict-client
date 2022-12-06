@@ -25,6 +25,10 @@ export default function Page({ data }) {
 
   return (
     <body class="px-5 py-3 flex flex-col gap-5 items-center">
+      <nav class="flex gap-3 text-blue-600">
+        <a href="/">Home</a>
+        <a href="/results?q=.">Entries</a>
+      </nav>
       <h1 class="text-3xl font-semibold">Kita Dict</h1>
       <div class="flex flex-col">
         <h2 class="text-lg font-semibold">Progress Status</h2>
