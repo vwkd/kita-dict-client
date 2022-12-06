@@ -1,4 +1,5 @@
 import * as gfm from "gfm/mod.ts";
+import Layout from "$components/layout.tsx";
 
 const SERVER_URL = "http://vwkd-kita-dict-server.deno.dev/results";
 
@@ -26,25 +27,16 @@ export default function Page({ data }) {
   
   if (!results.length) {
     return (
-      <body class="px-5 py-3 flex flex-col gap-5 items-center">
-        <nav class="flex gap-3 text-blue-600">
-          <a href="/">Home</a>
-          <a href="/results?q=.">Entries</a>
-        </nav>
-        <h1 class="text-3xl font-semibold">Kita Dict</h1>
+      <Layout>
         <p>No results found.</p>
-      </body>
+      </Layout>
     );
   }
 
   return (
-    <body class="px-5 py-3 flex flex-col gap-5 items-center">
-      <nav class="flex gap-3 text-blue-600">
-        <a href="/">Home</a>
-        <a href="/results?q=.">Entries</a>
-      </nav>
-      <h1 class="text-3xl font-semibold">Kita Dict</h1>
-      <ul class="flex flex-col max-w-screen-sm">
+    <Layout>
+      <h1 class="text-3xl font-semibold">Results</h1>
+      <ul class="flex flex-col">
       { results.map((line) => {
           if (line.includes("\n  ")) {
             const sublines = line.split("\n  ");
@@ -73,6 +65,6 @@ export default function Page({ data }) {
         })
       }
       </ul>
-    </body>
+    </Layout>
   );
 }
