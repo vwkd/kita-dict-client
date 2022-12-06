@@ -21,7 +21,7 @@ export const handler = {
 };
 
 export default function Page({ data }) {
-  const { book, last_page } = data.status;
+  const { progress, pages, pagesTotal } = data.status;
 
   return (
     <body class="px-5 py-3 flex flex-col gap-5 items-center">
@@ -30,16 +30,9 @@ export default function Page({ data }) {
         <a href="/results?q=.">Entries</a>
       </nav>
       <h1 class="text-3xl font-semibold">Kita Dict</h1>
-      <div class="flex flex-col">
+      <div class="flex flex-col items-center">
         <h2 class="text-lg font-semibold">Progress Status</h2>
-        <div class="flex gap-2">
-          <h3>Book</h3>
-          <p>{book}</p>
-        </div>
-        <div class="flex gap-2">
-          <h3>Page</h3>
-          <p>{last_page}</p>
-        </div>
+        <p>{`${progress}% (${pages}/${pagesTotal} pages)`}</p>
       </div>
     </body>
   );
