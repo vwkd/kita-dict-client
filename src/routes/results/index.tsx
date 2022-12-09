@@ -1,4 +1,4 @@
-import * as gfm from "gfm/mod.ts";
+import { renderMarkdown } from "$lib/utils.ts";
 import Layout from "$components/layout.tsx";
 
 const SERVER_URL = "http://vwkd-kita-dict-server.deno.dev/results";
@@ -45,8 +45,8 @@ export default function Page({ data }) {
               <li class="py-4 border-b-2 last:border-0 flex flex-col">
                 <ul class="flex flex-col">
                   { sublines.map((subline, i) => {
-                    // only to make `**` bold and `*` cursive
-                    const html = gfm.render(subline);
+                    const html = renderMarkdown(subline);
+
                     return (
                       <li dangerouslySetInnerHTML={{ __html: html }} class={`${i > 0 ? "ml-2" : ""} ${i > 1 ? "mt-2" : ""}`}></li>
                       );
@@ -56,8 +56,7 @@ export default function Page({ data }) {
               </li>
             );
           } else {
-            // only to make `**` bold and `*` cursive
-            const html = gfm.render(line);
+            const html = renderMarkdown(line);
             return (
               <li dangerouslySetInnerHTML={{ __html: html }} class="py-4 border-b-2 last:border-0" style="text-indent: -0.5rem; padding-left: 0.5rem;"></li>
             );
