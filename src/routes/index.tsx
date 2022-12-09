@@ -1,12 +1,19 @@
 import Layout from "$components/layout.tsx";
+import type { Handlers, PageProps } from "$fresh/server.ts";
 
 const SERVER_URL = "http://vwkd-kita-dict-server.deno.dev/status";
 
-export const handler = {
+type Status = {
+  progress: number;
+  pages: number;
+  pagesTotal: number;
+};
+
+export const handler: Handlers = {
   async GET(req, ctx) {
     const url = new URL(req.url);
     const q = url.searchParams.get("q");
-    
+
     // note: deprecated legacy queries on root
     if (q !== null) {
       return new Response("Use /results endpoint", {
@@ -16,13 +23,13 @@ export const handler = {
     }
 
     const res = await fetch(SERVER_URL);
-    const status = await res.json();
+    const status: Status = await res.json();
 
     return ctx.render({ status });
   },
 };
 
-export default function Page({ data }) {
+export default function Page({ data }: PageProps<{ status: Status }>) {
   const { progress, pages, pagesTotal } = data.status;
 
   return (

@@ -1,19 +1,25 @@
 import { renderMarkdown } from "$lib/utils.ts";
 import Layout from "$components/layout.tsx";
+import type { Handlers, PageProps } from "$fresh/server.ts";
 
 const SERVER_URL = "http://vwkd-kita-dict-server.deno.dev/reference";
 
-export const handler = {
+type Reference = {
+  abbreviations: string[];
+  symbols: string[];
+};
+
+export const handler: Handlers = {
   async GET(_, ctx) {
 
     const res = await fetch(SERVER_URL);
-    const reference = await res.json();
+    const reference: Reference = await res.json();
 
     return ctx.render({ reference });
   },
 };
 
-export default function Page({ data }) {
+export default function Page({ data }: PageProps<{ reference: Reference }>) {
   const { abbreviations, symbols } = data.reference;
 
   return (

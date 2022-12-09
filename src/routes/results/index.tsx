@@ -1,9 +1,12 @@
 import { renderMarkdown } from "$lib/utils.ts";
 import Layout from "$components/layout.tsx";
+import type { Handlers, PageProps } from "$fresh/server.ts";
 
 const SERVER_URL = "http://vwkd-kita-dict-server.deno.dev/results";
 
-export const handler = {
+type Results = string[];
+
+export const handler: Handlers = {
   async GET(req, ctx) {
     const url = new URL(req.url);
     const q = url.searchParams.get("q");
@@ -16,13 +19,13 @@ export const handler = {
     urlServer.searchParams.set("q", q);
 
     const res = await fetch(urlServer);
-    const results = await res.json();
+    const results: Results = await res.json();
 
     return ctx.render({ results });
   },
 };
 
-export default function Page({ data }) {
+export default function Page({ data }: PageProps<{ results: Results }>) {
   const results = data.results;
   
   if (!results.length) {
