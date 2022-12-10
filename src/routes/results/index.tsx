@@ -4,7 +4,7 @@ import type { Handlers, PageProps } from "$fresh/server.ts";
 
 const SERVER_URL = "http://vwkd-kita-dict-server.deno.dev/results";
 
-type Results = string[];
+type Results = string[][];
 
 export const handler: Handlers = {
   async GET(req, ctx) {
@@ -40,10 +40,8 @@ export default function Page({ data }: PageProps<{ results: Results }>) {
     <Layout>
       <h1 class="text-3xl font-semibold">Results</h1>
       <ul class="flex flex-col">
-      { results.map((line) => {
-          if (line.includes("\n  ")) {
-            const sublines = line.split("\n  ");
-          
+      { results.map((sublines) => {
+          if (sublines.length > 1) {
             return (
               <li class="py-4 border-b-2 last:border-0 flex flex-col">
                 <ul class="flex flex-col">
@@ -59,7 +57,7 @@ export default function Page({ data }: PageProps<{ results: Results }>) {
               </li>
             );
           } else {
-            const html = renderMarkdown(line);
+            const html = renderMarkdown(sublines[0]);
             return (
               <li dangerouslySetInnerHTML={{ __html: html }} class="py-4 border-b-2 last:border-0" style="text-indent: -0.5rem; padding-left: 0.5rem;"></li>
             );
