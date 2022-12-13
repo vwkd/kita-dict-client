@@ -43,7 +43,7 @@ export default function Page({ data }: PageProps<{ results: Results }>) {
         {results.map((sublines) => {
           if (sublines.length > 1) {
             return (
-              <li class="py-4 border-b-2 last:border-0 flex flex-col">
+              <li class="py-4 border-b-2 last:border-0 border-slate-200 dark:border-slate-800 flex flex-col">
                 <ul class="flex flex-col">
                   {sublines.map((subline, i) => {
                     const html = renderMarkdown(subline);
@@ -64,7 +64,7 @@ export default function Page({ data }: PageProps<{ results: Results }>) {
             return (
               <li
                 dangerouslySetInnerHTML={{ __html: html }}
-                class="py-4 border-b-2 last:border-0"
+                class="py-4 border-b-2 last:border-0 border-slate-200 dark:border-slate-800"
                 style="text-indent: -0.5rem; padding-left: 0.5rem;"
               >
               </li>
