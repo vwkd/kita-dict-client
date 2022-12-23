@@ -50,9 +50,9 @@ export default function Page({ data }: PageProps<{ results: Results }>) {
 
                     return (
                       <li
-                        dangerouslySetInnerHTML={{ __html: html }}
                         class={`${i > 0 ? "ml-2" : ""} ${i > 1 ? "mt-2" : ""}`}
                       >
+                        <p dangerouslySetInnerHTML={{ __html: html }}></p>
                       </li>
                     );
                   })}
@@ -62,11 +62,12 @@ export default function Page({ data }: PageProps<{ results: Results }>) {
           } else {
             const html = renderMarkdown(sublines[0]);
             return (
-              <li
-                dangerouslySetInnerHTML={{ __html: html }}
-                class="py-4 border-b-2 last:border-0 border-slate-200 dark:border-slate-800"
-                style="text-indent: -0.5rem; padding-left: 0.5rem;"
-              >
+              <li class="py-4 border-b-2 last:border-0 border-slate-200 dark:border-slate-800">
+                <p
+                  dangerouslySetInnerHTML={{ __html: html }}
+                  style="text-indent: -0.5rem; padding-left: 0.5rem;"
+                >
+                </p>
               </li>
             );
           }

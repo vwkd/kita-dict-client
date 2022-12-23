@@ -1,4 +1,4 @@
-import { render } from "gfm/mod.ts";
+import { parseInline } from "marked";
 
 // []<>~
 const ESCAPE_CHARS = /([\[\]\<\>])/g;
@@ -21,7 +21,7 @@ export function renderMarkdown(str: string) {
     .replace(ILLEGAL_BOLD, "$1X$2")
     .replace(SLASH, "/<wbr>");
 
-  const html = render(strEscaped)
+  const html = parseInline(strEscaped)
     .replace(PLACEHOLDER_BOLD, "$1$2");
 
   return html;

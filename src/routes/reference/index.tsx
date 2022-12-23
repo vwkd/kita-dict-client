@@ -50,7 +50,7 @@ export default function Page({ data }: PageProps<{ reference: Reference }>) {
                 class="grid"
                 style="grid-column: span 2; grid-template-rows: subgrid; grid-template-columns: subgrid;"
               >
-                <div dangerouslySetInnerHTML={{ __html: html }}></div>
+                <p dangerouslySetInnerHTML={{ __html: html }}></p>
                 <p>{value}</p>
               </li>
             );
