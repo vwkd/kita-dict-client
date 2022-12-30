@@ -43,14 +43,14 @@ export default function Page({ data }: PageProps<{ results: Results }>) {
         {results.map((sublines) => {
           if (sublines.length > 1) {
             return (
-              <li class="py-4 border-b-2 last:border-0 border-slate-200 dark:border-slate-800 flex flex-col">
+              <li class="flex flex-col">
                 <ul class="flex flex-col">
                   {sublines.map((subline, i) => {
                     const html = renderMarkdown(subline);
 
                     return (
                       <li
-                        class={`${i > 0 ? "ml-2" : ""} ${i > 1 ? "mt-2" : ""}`}
+                        class={`${i > 0 ? "ml-2" : ""}`}
                       >
                         <p dangerouslySetInnerHTML={{ __html: html }}></p>
                       </li>
@@ -62,7 +62,7 @@ export default function Page({ data }: PageProps<{ results: Results }>) {
           } else {
             const html = renderMarkdown(sublines[0]);
             return (
-              <li class="py-4 border-b-2 last:border-0 border-slate-200 dark:border-slate-800">
+              <li>
                 <p
                   dangerouslySetInnerHTML={{ __html: html }}
                   style="text-indent: -0.5rem; padding-left: 0.5rem;"
