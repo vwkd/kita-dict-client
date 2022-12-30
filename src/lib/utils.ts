@@ -8,6 +8,8 @@ const ILLEGAL_BOLD = /(\))(\*\*)(?! |$)/g;
 const PLACEHOLDER_BOLD = /(\))X(<\/strong>)/g;
 const SLASH = /\//g;
 
+const NON_BREAKING_HYPHEN = / -/g;
+
 // only makes `**` bold and `*` cursive
 // escapes other markdown characters present in dict
 // beware: escape single tilde since some are converted into `<del>`, e.g. `გა~, და~, მი~` becomes `გა<del>, და</del>, მი~`
@@ -22,7 +24,8 @@ export function renderMarkdown(str: string) {
     .replace(SLASH, "/<wbr>");
 
   const html = parseInline(strEscaped)
-    .replace(PLACEHOLDER_BOLD, "$1$2");
+    .replace(PLACEHOLDER_BOLD, "$1$2")
+    .replace(NON_BREAKING_HYPHEN, " ‑");
 
   return html;
 }
