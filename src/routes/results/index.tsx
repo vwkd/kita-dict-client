@@ -25,19 +25,20 @@ export const handler: Handlers = {
   },
 };
 
-export default function Page({ data }: PageProps<{ results: Results }>) {
+export default function Page({ url, data }: PageProps<{ results: Results }>) {
+  const u = new URL(url);
   const results = data.results;
 
   if (!results.length) {
     return (
-      <Layout>
+      <Layout url={u.toString()}>
         <p>No results found.</p>
       </Layout>
     );
   }
 
   return (
-    <Layout>
+    <Layout url={u.toString()}>
       <h1 class="text-3xl font-semibold">Results</h1>
       <ul class="flex flex-col">
         {results.map((sublines) => {

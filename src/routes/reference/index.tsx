@@ -18,7 +18,9 @@ export const handler: Handlers = {
   },
 };
 
-export default function Page({ data }: PageProps<{ reference: Reference }>) {
+export default function Page(
+  { data }: PageProps<{ reference: Reference }>,
+) {
   const { abbreviations, symbols } = data.reference;
 
   return (
