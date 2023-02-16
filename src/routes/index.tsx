@@ -11,18 +11,7 @@ type Status = {
 };
 
 export const handler: Handlers = {
-  async GET(req, ctx) {
-    const url = new URL(req.url);
-    const q = url.searchParams.get("q");
-
-    // note: deprecated legacy queries on root
-    if (q !== null) {
-      return new Response("Use /results endpoint", {
-        status: 301,
-        headers: { location: `/results${url.search}` },
-      });
-    }
-
+  async GET(_req, ctx) {
     const res = await fetch(SERVER_URL);
     const status: Status = await res.json();
 
