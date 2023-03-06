@@ -25,40 +25,48 @@ export default function Page(
 
   return (
     <Layout>
-      <h1 class="text-3xl font-semibold">Reference</h1>
-      <div class="flex flex-col gap-3 items-center">
-        <h2 class="text-lg font-semibold">Symbols</h2>
-        <ul class="grid gap-y-1" style="grid-template-columns: 1fr 2fr">
-          {symbols.map(([key, value]) => {
-            return (
-              <li
-                class="grid"
-                style="grid-column: span 2; grid-template-rows: subgrid; grid-template-columns: subgrid;"
-              >
-                <div>{key}</div>
-                <p>{value}</p>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div class="flex flex-col gap-3 items-center">
-        <h2 class="text-lg font-semibold">Abbreviations</h2>
-        <ul class="grid gap-y-1" style="grid-template-columns: 1fr 2fr">
-          {abbreviations.map(([key, value]) => {
-            const html = renderMarkdown(key);
-            return (
-              <li
-                class="grid"
-                style="grid-column: span 2; grid-template-rows: subgrid; grid-template-columns: subgrid;"
-              >
-                <p dangerouslySetInnerHTML={{ __html: html }}></p>
-                <p>{value}</p>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <main class="flex-1 flex flex-col gap-3">
+        <h1 class="text-3xl font-semibold text-slate-500 dark:text-gray-600">
+          Reference
+        </h1>
+        <div class="flex flex-col gap-3 items-center">
+          <h2 class="text-lg font-semibold text-slate-500 dark:text-gray-600">
+            Symbols
+          </h2>
+          <ul class="grid gap-y-1" style="grid-template-columns: 1fr 2fr">
+            {symbols.map(([key, value]) => {
+              return (
+                <li
+                  class="grid"
+                  style="grid-column: span 2; grid-template-rows: subgrid; grid-template-columns: subgrid;"
+                >
+                  <div>{key}</div>
+                  <p>{value}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div class="flex flex-col gap-3 items-center">
+          <h2 class="text-lg font-semibold text-slate-500 dark:text-gray-600">
+            Abbreviations
+          </h2>
+          <ul class="grid gap-y-1" style="grid-template-columns: 1fr 2fr">
+            {abbreviations.map(([key, value]) => {
+              const html = renderMarkdown(key);
+              return (
+                <li
+                  class="grid"
+                  style="grid-column: span 2; grid-template-rows: subgrid; grid-template-columns: subgrid;"
+                >
+                  <p dangerouslySetInnerHTML={{ __html: html }}></p>
+                  <p>{value}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </main>
     </Layout>
   );
 }

@@ -39,41 +39,45 @@ export default function Page({ url, data }: PageProps<{ results: Results }>) {
 
   return (
     <Layout url={u.toString()}>
-      <h1 class="text-3xl font-semibold">Results</h1>
-      <ul class="flex flex-col">
-        {results.map((sublines) => {
-          if (sublines.length > 1) {
-            return (
-              <li class="flex flex-col">
-                <ul class="flex flex-col">
-                  {sublines.map((subline, i) => {
-                    const html = renderMarkdown(subline);
+      <main class="flex-1 flex flex-col gap-3">
+        <h1 class="text-3xl font-semibold text-slate-500 dark:text-gray-600">
+          Results
+        </h1>
+        <ul class="flex flex-col">
+          {results.map((sublines) => {
+            if (sublines.length > 1) {
+              return (
+                <li class="flex flex-col">
+                  <ul class="flex flex-col">
+                    {sublines.map((subline, i) => {
+                      const html = renderMarkdown(subline);
 
-                    return (
-                      <li
-                        class={`${i > 0 ? "ml-2" : ""}`}
-                      >
-                        <p dangerouslySetInnerHTML={{ __html: html }}></p>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </li>
-            );
-          } else {
-            const html = renderMarkdown(sublines[0]);
-            return (
-              <li>
-                <p
-                  dangerouslySetInnerHTML={{ __html: html }}
-                  style="text-indent: -0.5rem; padding-left: 0.5rem;"
-                >
-                </p>
-              </li>
-            );
-          }
-        })}
-      </ul>
+                      return (
+                        <li
+                          class={`${i > 0 ? "ml-2" : ""}`}
+                        >
+                          <p dangerouslySetInnerHTML={{ __html: html }}></p>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </li>
+              );
+            } else {
+              const html = renderMarkdown(sublines[0]);
+              return (
+                <li>
+                  <p
+                    dangerouslySetInnerHTML={{ __html: html }}
+                    style="text-indent: -0.5rem; padding-left: 0.5rem;"
+                  >
+                  </p>
+                </li>
+              );
+            }
+          })}
+        </ul>
+      </main>
     </Layout>
   );
 }
