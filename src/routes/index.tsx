@@ -26,7 +26,7 @@ export default function Page({ data }: PageProps<{ status: Status }>) {
     <Layout>
       <main class="flex-1 flex flex-col gap-10">
         <header class="flex flex-col gap-3">
-          <h1 class="text-5xl font-semibold text-slate-500 dark:text-gray-600">
+          <h1 class="text-5xl font-semibold text-slate-500 dark:text-gray-500">
             Kita Dict
           </h1>
         </header>
@@ -39,17 +39,17 @@ export default function Page({ data }: PageProps<{ status: Status }>) {
           </p>
         </section>
         <section class="flex flex-col gap-3">
-          <h2 class="text-2xl font-semibold text-slate-500 dark:text-gray-600">
+          <h2 class="text-2xl font-semibold text-slate-500 dark:text-gray-500">
             Status
           </h2>
           <div class="flex flex-col">
-            <h3 class="text-lg font-semibold text-slate-500 dark:text-gray-600">
+            <h3 class="text-lg font-semibold text-slate-500 dark:text-gray-500">
               Entries
             </h3>
             <p>{entries}</p>
           </div>
           <div class="flex flex-col">
-            <h3 class="text-lg font-semibold text-slate-500 dark:text-gray-600">
+            <h3 class="text-lg font-semibold text-slate-500 dark:text-gray-500">
               Progress
             </h3>
             <p>{`${progress}%`}</p>

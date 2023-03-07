@@ -40,7 +40,7 @@ export default function Page({ url, data }: PageProps<{ results: Results }>) {
   return (
     <Layout url={u.toString()}>
       <main class="flex-1 flex flex-col gap-3">
-        <h1 class="text-3xl font-semibold text-slate-500 dark:text-gray-600">
+        <h1 class="text-3xl font-semibold text-slate-500 dark:text-gray-500">
           Results
         </h1>
         <ul class="flex flex-col">

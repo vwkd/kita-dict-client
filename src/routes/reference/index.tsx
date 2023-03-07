@@ -26,11 +26,11 @@ export default function Page(
   return (
     <Layout>
       <main class="flex-1 flex flex-col gap-3">
-        <h1 class="text-3xl font-semibold text-slate-500 dark:text-gray-600">
+        <h1 class="text-3xl font-semibold text-slate-500 dark:text-gray-500">
           Reference
         </h1>
         <div class="flex flex-col gap-3 items-center">
-          <h2 class="text-lg font-semibold text-slate-500 dark:text-gray-600">
+          <h2 class="text-lg font-semibold text-slate-500 dark:text-gray-500">
             Symbols
           </h2>
           <ul class="grid gap-y-1" style="grid-template-columns: 1fr 2fr">
@@ -48,7 +48,7 @@ export default function Page(
           </ul>
         </div>
         <div class="flex flex-col gap-3 items-center">
-          <h2 class="text-lg font-semibold text-slate-500 dark:text-gray-600">
+          <h2 class="text-lg font-semibold text-slate-500 dark:text-gray-500">
             Abbreviations
           </h2>
           <ul class="grid gap-y-1" style="grid-template-columns: 1fr 2fr">

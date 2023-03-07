@@ -35,7 +35,7 @@ function MyHead() {
 
 function Navigation({ query, pathname }: { query: string; pathname: string }) {
   return (
-    <nav class="border-b border-slate-300 dark:border-gray-700 text-slate-500 dark:text-gray-600 flex">
+    <nav class="border-b border-slate-300 dark:border-gray-700 text-slate-500 dark:text-gray-500 flex">
       <ul class="flex-1 px-2 py-2 gap-3 flex items-center">
         <NavButton href="/">
           <svg
