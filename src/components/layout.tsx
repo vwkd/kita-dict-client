@@ -24,7 +24,7 @@ export default function Layout(
 function MyHead() {
   return (
     <Head>
-      <title>Kita</title>
+      <title>Kita Dict</title>
       <meta
         content="Georgian German dictionary"
         name="Kita Dict"
