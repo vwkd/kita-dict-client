@@ -4,7 +4,11 @@ import SearchBox from "./searchbox.tsx";
 import NavButton from "./navbutton.tsx";
 
 export default function Layout(
-  { url, children }: { url: string; children: ComponentChildren },
+  { url, noindex, children }: {
+    url: string;
+    noindex: boolean;
+    children: ComponentChildren;
+  },
 ) {
   const u = url ? new URL(url) : undefined;
   const pathname = u?.pathname;
@@ -12,7 +16,7 @@ export default function Layout(
 
   return (
     <body class="flex-1 max-w-[min(95vw,768px)] mx-auto pb-4 flex flex-col gap-4 bg-white dark:bg-gray-900 text-slate-800 dark:text-gray-300">
-      <MyHead />
+      <MyHead noindex={noindex} />
       <Navigation query={query} pathname={pathname} />
       <div class="flex-1 min-h-0 flex flex-col">
         {children}
@@ -21,7 +25,7 @@ export default function Layout(
   );
 }
 
-function MyHead() {
+function MyHead({ noindex }: { noindex: boolean }) {
   return (
     <Head>
       <title>Kita Dict</title>
@@ -29,6 +33,7 @@ function MyHead() {
         content="Georgian German dictionary"
         name="Kita Dict"
       />
+      {noindex && <meta name="robots" content="noindex, follow" />}
     </Head>
   );
 }

@@ -31,14 +31,14 @@ export default function Page({ url, data }: PageProps<{ results: Results }>) {
 
   if (!results.length) {
     return (
-      <Layout url={u.toString()}>
+      <Layout url={u.toString()} noindex={true}>
         <p>No results found.</p>
       </Layout>
     );
   }
 
   return (
-    <Layout url={u.toString()}>
+    <Layout url={u.toString()} noindex={true}>
       <main class="flex-1 flex flex-col gap-3">
         <h1 class="text-3xl font-semibold text-slate-500 dark:text-gray-500">
           Results
